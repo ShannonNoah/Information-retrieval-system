@@ -1,5 +1,6 @@
 import json
 import os
+import preprocess as ps 
 
 
 def load_vocabulary(vocab_file):
@@ -32,7 +33,8 @@ def inverted_index(corpus_file, vocab):
             for line in file:
                 doc = json.loads(line.strip())
                 doc_id = doc["_id"]  # Document ID from JSON
-                tokens = doc["text"].split()  # Tokenize the text
+                #tokens = doc["text"].split()  # Tokenize the text
+                tokens = ps.preprocess_document(doc)
 
                 for token in tokens:
                     if token in vocab:
