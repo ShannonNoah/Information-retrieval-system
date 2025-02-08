@@ -85,7 +85,7 @@ The ranking of the documents is stored in `Results.txt`. Open this file in a tex
 
 Shabrina Sharmin: retr_rank.py (Retrieval and Ranking).
 
-Shannon Noah: Preprocessing.py, and computing evaluation measures usding the trec_eval script.
+Shannon Noah (300163898): Preprocessing.py, and computing evaluation measures usding the trec_eval script.
 
 Tina Trinh: Index.py (Indexing step).
 
