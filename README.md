@@ -97,34 +97,37 @@ Steps to run:
 2. Upload the following files to the notebook: Results.txt, test.tsv
 3. Run the cells.
 
-Below are the key results:
-runid all 5d7d54f3-bbcd-4a7b-ae8d-78bbf505b716
-num_q all 300
-num_ret all 29931
-num_rel all 339
-num_rel_ret all 297
-map all 0.4657
-gm_map all 0.0918
-Rprec all 0.3512
-bpref all 0.8759
-recip_rank all 0.4773
-iprec_at_recall_0.00 all 0.4774
-iprec_at_recall_0.10 all 0.4774
-iprec_at_recall_0.20 all 0.4774
-iprec_at_recall_0.30 all 0.4773
-iprec_at_recall_0.40 all 0.4762
-iprec_at_recall_0.50 all 0.4735
-iprec_at_recall_0.60 all 0.4735
-iprec_at_recall_0.70 all 0.4704
-iprec_at_recall_0.80 all 0.4577
-iprec_at_recall_0.90 all 0.4544
-iprec_at_recall_1.00 all 0.4544
-P_5 all 0.1280
-P_10 all 0.0733
-P_15 all 0.0547
-P_20 all 0.0427
-P_30 all 0.0303
-P_100 all 0.0099
-P_200 all 0.0049
-P_500 all 0.0020
-P_1000 all 0.0010
+Below are the key results: <br>
+runid all 5d7d54f3-bbcd-4a7b-ae8d-78bbf505b716 <br>
+num_q all 300 <br>
+num_ret all 29931 <br>
+num_rel all 339 <br>
+num_rel_ret all 297 <br>
+map all 0.4657 <br>
+gm_map all 0.0918 <br>
+Rprec all 0.3512 <br>
+bpref all 0.8759 <br>
+recip_rank all 0.4773 <br>
+iprec_at_recall_0.00 all 0.4774 <br>
+iprec_at_recall_0.10 all 0.4774 <br>
+iprec_at_recall_0.20 all 0.4774 <br>
+iprec_at_recall_0.30 all 0.4773 <br>
+iprec_at_recall_0.40 all 0.4762 <br>
+iprec_at_recall_0.50 all 0.4735 <br>
+iprec_at_recall_0.60 all 0.4735 <br>
+iprec_at_recall_0.70 all 0.4704 <br>
+iprec_at_recall_0.80 all 0.4577 <br>
+iprec_at_recall_0.90 all 0.4544 <br>
+iprec_at_recall_1.00 all 0.4544 <br>
+P_5 all 0.1280 <br>
+P_10 all 0.0733 <br>
+P_15 all 0.0547 <br>
+P_20 all 0.0427 <br>
+P_30 all 0.0303 <br>
+P_100 all 0.0099 <br>
+P_200 all 0.0049 <br>
+P_500 all 0.0020 <br>
+P_1000 all 0.0010 <br>
+
+
+The Mean Average Precision (MAP) score for our retrieval system, using trec_eval, is 0.4657. This shows a moderate effectiveness in retrieving relevant documents, as MAP measures the quality of ranked results by averaging precision across recall levels.
