@@ -74,6 +74,212 @@ The created inverted index is saved in `inverted_index.json`. Open this file wit
 
 The ranking of the documents is stored in `Results.txt`. Open this file in a text editor to view the ranking of the documents for the queries.
 
+### **Algorithms, Data Structures, and Optimizations Used**
+
+### **1. Preprocessing (`preprocess.py`)**
+This step processes raw text to make it ready for indexing and retrieval.
+
+- Algorithms:
+  - HTML/XML markup removal using BeautifulSoup.
+  - Tokenization using NLTK’s `word_tokenize`.
+  - Stopword removal with NLTK stopword list.
+  - Stemming using Porter Stemmer to reduce words to their root form.
+  - Text normalization by converting to lowercase and removing punctuation and numbers.
+
+- Data Structures:
+  - Lists: Used to store tokenized words for each document.
+  - Sets: Used for the stopword list (fast lookups) and for storing unique vocabulary words.
+
+- Optimizations:
+  - Uses compiled regular expressions (`re.sub`) for efficient text cleaning.
+  - NLTK stopwords stored in a set for faster membership checks.
+
+---
+
+### **2. Indexing (`index.py`)**
+This step builds an inverted index for fast retrieval.
+
+- Algorithms:
+  - Inverted Index Construction: Each term maps to a dictionary of `{doc_id: term_frequency}`.
+  - Tokenization and Cleaning: Uses `preprocess_document()` from `preprocess.py`.
+
+- Data Structures:
+  - Set: Used for storing vocabulary for fast lookup.
+  - Dictionary (`dict`):
+    - `{term: {doc_id: frequency}}` structure for inverted index.
+    - Nested dictionaries for term-document frequency tracking.
+
+- Optimizations:
+  - Early filtering: Only indexes words found in the vocabulary to reduce index size.
+  - Efficient JSON processing using `json.loads(line.strip())` for handling large datasets.
+  - Index saved in JSON format for easy loading in the retrieval step.
+
+---
+
+### **3. Retrieval & Ranking (`retr_rank.py`)**
+This step retrieves and ranks relevant documents based on TF-IDF and Cosine Similarity.
+
+- Algorithms:
+  - TF-IDF Calculation:
+    - Uses `term frequency (tf)` and inverse document frequency `(idf)` to weight terms.
+    - Normalization: Term frequency is scaled by the highest term frequency in each document.
+  - Cosine Similarity:
+    - Computes dot product between query and document vectors.
+    - Uses precomputed document vector lengths for efficiency.
+  - Sorting & Ranking:
+    - Uses sorted dictionary (`lambda sort`) to rank documents.
+
+- Data Structures:
+  - Dictionary (`dict`):
+    - `{term: {doc_id: tf-idf score}}` for TF-IDF term-document representation.
+    - `{query_id: {doc_id: similarity_score}}` for ranking.
+  - Lists: Used to store preprocessed queries.
+  - Pandas DataFrame: Used for formatting ranking results.
+
+- Optimizations:
+  - Precalculates document lengths to avoid repeated calculations.
+  - Keeps top 100 documents using `itertools.islice()` for efficiency.
+  - Batch ranking and writing to file to reduce I/O overhead.
+
+
+## Vocabulary
+Our vocabulary was had a length of 30871. <br>
+
+Here is a sample of 100 tokens from the vocabulary: <br>
+
+aa
+aaa
+aaaatpas
+aaafamili
+aab
+aabenhu
+aacr
+aacrthi
+aad
+aadinduc
+aadtreat
+aag
+aah
+aai
+aakampk
+aalpha
+aam
+aanatsnat
+aarhu
+aaronquinlangmailcom
+aasv
+aatf
+aauaaa
+aav
+ab
+abad
+abandon
+abas
+abb
+abber
+abbott
+abbrevi
+abc
+abca
+abcamedi
+abcb
+abcc
+abcg
+abciximab
+abciximabrel
+abctarget
+abd
+abda
+abdb
+abdomen
+abdomin
+abdominala
+abduct
+aberr
+aberrantincomplet
+aberrantli
+abeta
+abf
+abfreb
+abfrebsit
+abi
+abibas
+abil
+abiot
+abirateron
+abl
+ablat
+abm
+abmd
+abnorm
+abocompat
+abolish
+abort
+abound
+abovefacil
+abovement
+abp
+abpa
+abpi
+abrb
+abroad
+abrog
+abrupt
+abruptli
+abscess
+abscis
+absciss
+absenc
+absent
+absolut
+absoluteconcentr
+absorb
+absorbancecytophotometr
+absorpt
+absorptiometri
+abstain
+abstent
+abstin
+abstract
+abstracta
+abstractmicrorna
+abt
+abuja
+abulia
+abund
+<br>
+
+**First 10 Answers for the First Two Queries:** <br>
+
+**Query ID: 0**
+1. **13231899**
+2. **1836154**
+3. **42373087**
+4. **25301182**
+5. **10342807**
+6. **24660385**
+7. **14827874**
+8. **42731834**
+9. **994800**
+10. **4435369**
+
+**Query ID: 2**
+1. **13734012**
+2. **14610165**
+3. **26059876**
+4. **11992632**
+5. **9038803**
+6. **13770184**
+7. **32922179**
+8. **21855837**
+9. **8509018**
+10. **1203035**
+
+<br>
+Analysis: The results for Query ID: 0 and Query ID: 2 are completely different from one another, meaning that each query retrieves a unique set of top-ranked documents.
+This suggests that the vocabulary filtering and token weighting (TF-IDF) are effective in distinguishing different queries.
+
+
 ## Features
 
 - **Text Preprocessing**: Involves tokenization, removal of stopwords, and stemming.
