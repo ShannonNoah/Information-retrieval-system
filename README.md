@@ -83,11 +83,11 @@ The ranking of the documents is stored in `Results.txt`. Open this file in a tex
 
 ## Contributions
 
-Shabrina Sharmin
+Shabrina Sharmin: retr_rank.py (Retrieval and Ranking).
 
-Shannon Noah
+Shannon Noah: Preprocessing.py, and computing evaluation measures usding the trec_eval script.
 
-Tina Trinh
+Tina Trinh: Index.py (Indexing step).
 
 ## Results of trec_eval
 
