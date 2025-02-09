@@ -288,7 +288,6 @@ abund
 8. **21855837**
 9. **8509018**
 10. **1203035**
-
 <br>
 Analysis: The results for Query ID: 0 and Query ID: 2 are completely different from one another, meaning that each query retrieves a unique set of top-ranked documents.
 This suggests that the vocabulary filtering and token weighting (TF-IDF) are effective in distinguishing different queries.
@@ -351,7 +350,7 @@ The Mean Average Precision (MAP) score for our retrieval system, using trec_eval
 
 ## Contributions & Tasks Divided
 
-Shabrina Sharmin: retr_rank.py (Retrieval and Ranking), report.
+Shabrina Sharmin: retr_rank.py (Retrieval and Ranking).
 
 Shannon Noah (300163898): Preprocessing.py (Preprocessing), and computing evaluation measures using trec_eval script, report.
 
