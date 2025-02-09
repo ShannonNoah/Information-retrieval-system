@@ -68,13 +68,27 @@ python retr_rank.py
 
 The script uses the modules index.py and preprocess.py as well as the output files `inverted_index.json` and `vocabulary.txt` to create the ranking based on the `dataset/queries.jsonl` file.
 
-### Viewing the Output
+## Detailed Descriptions
+
+### Preprocessing (`preprocess.py`)
+This script makes sure that the text from our documents is clean and ready for the computer to understand easily. It involves removing unnecessary clutter, splitting text into words, removing common but unhelpful words, converting words to their base forms, and standardizing text.
+
+### Indexing (`index.py`)
+This script organizes the cleaned text so that it can quickly find documents when you search for specific words. It creates a list of all unique words and builds an inverted index that details where each word appears in the documents and how often.
+
+### Retrieval & Ranking (`retr_rank.py`)
+This script looks at your search words, finds documents that contain those words, and arranges them by how relevant they are to your search. It processes search queries, finds matching documents, and ranks documents by relevance using a scoring system based on term frequency and document similarity.
+
+
+## Viewing the Output
 
 The created inverted index is saved in `inverted_index.json`. Open this file with any JSON-supporting text editor to examine the structured index.
 
 The ranking of the documents is stored in `Results.txt`. Open this file in a text editor to view the ranking of the documents for the queries.
 
 ### **Algorithms, Data Structures, and Optimizations Used**
+
+---
 
 ### **1. Preprocessing (`preprocess.py`)**
 This step processes raw text to make it ready for indexing and retrieval.
@@ -249,7 +263,7 @@ abulia
 abund
 <br>
 
-**First 10 Answers for the First Two Queries:** <br>
+### First 10 Answers for the First Two Queries:
 
 **Query ID: 0**
 1. **13231899**
@@ -279,21 +293,19 @@ abund
 Analysis: The results for Query ID: 0 and Query ID: 2 are completely different from one another, meaning that each query retrieves a unique set of top-ranked documents.
 This suggests that the vocabulary filtering and token weighting (TF-IDF) are effective in distinguishing different queries.
 
+#### Results for Query ID: 0
+The documents that came up for this query matched closely with the topics and keywords we asked about. Our system uses a combination of TF-IDF and cosine similarity to find documents that really fit what the search query is about. This means it’s not just finding random documents; it’s finding the ones that are most relevant.
 
-## Features
+#### Results for Query ID: 2
+Similar to the first query, the documents retrieved here were highly relevant to the terms searched. This shows our system’s ability to not only find documents that contain the search terms but to rank them in a way that the most relevant ones come first.
 
-- **Text Preprocessing**: Involves tokenization, removal of stopwords, and stemming.
-- **Inverted Index Construction**: Efficiently maps tokens to document IDs and counts occurrences.
-- **JSON Data Management**: Manages the reading and processing of JSON formatted data.
-- **IR Vector space model**: Uses the cosine similarity to rank the documents for queries.
+#### Key Observations and System Effectiveness
 
-## Contributions
+Effectiveness: Seeing completely different sets of documents for each query suggests our system is really focusing on the specifics of each search request. It adjusts its responses based on what you're looking for, which is a great sign of a responsive search system.
 
-Shabrina Sharmin: retr_rank.py (Retrieval and Ranking).
+Patterns: In both queries, the documents with a higher presence of the searched terms ranked higher. This is expected and shows our system is doing its job well.
 
-Shannon Noah (300163898): Preprocessing.py, and computing evaluation measures usding the trec_eval script.
-
-Tina Trinh: Index.py (Indexing step).
+Room for Improvement: Even though the system is performing well, we noticed some variation in how well different documents matched the query. This might mean we need to tweak how we calculate the importance of different terms, possibly by adjusting our formulas a bit.
 
 ## Results of trec_eval
 
@@ -335,5 +347,12 @@ P_200 all 0.0049 <br>
 P_500 all 0.0020 <br>
 P_1000 all 0.0010 <br>
 
-
 The Mean Average Precision (MAP) score for our retrieval system, using trec_eval, is 0.4657. This shows a moderate effectiveness in retrieving relevant documents, as MAP measures the quality of ranked results by averaging precision across recall levels.
+
+## Contributions & Tasks Divided
+
+Shabrina Sharmin: retr_rank.py (Retrieval and Ranking), report.
+
+Shannon Noah (300163898): Preprocessing.py (Preprocessing), and computing evaluation measures using trec_eval script, report.
+
+Tina Trinh (300175427): Index.py (Indexing step), report.
