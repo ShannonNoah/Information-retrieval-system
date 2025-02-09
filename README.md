@@ -311,10 +311,10 @@ Room for Improvement: Even though the system is performing well, we noticed some
 Steps to run:
 
 1. Open the evaluate.ipynb file in your Jupyter Notebook environment.
-2. Upload the following files to the notebook: Results.txt, test.tsv
+2. Upload the following files to the notebook: Results.txt, Results_title_text.txt, Results_title.txt test.tsv
 3. Run the cells.
 
-Below are the key results: <br>
+Below are the key results for corpus text only: <br>
 runid all 5d7d54f3-bbcd-4a7b-ae8d-78bbf505b716 <br>
 num_q all 300 <br>
 num_ret all 29931 <br>
@@ -346,11 +346,86 @@ P_200 all 0.0049 <br>
 P_500 all 0.0020 <br>
 P_1000 all 0.0010 <br>
 
-The Mean Average Precision (MAP) score for our retrieval system, using trec_eval, is 0.4657. This shows a moderate effectiveness in retrieving relevant documents, as MAP measures the quality of ranked results by averaging precision across recall levels.
+The Mean Average Precision (MAP) score for our retrieval system with corpus text, using trec_eval, is 0.4657. This shows a moderate effectiveness in retrieving relevant documents, as MAP measures the quality of ranked results by averaging precision across recall levels.
+
+Below are the key results for corpus title only: <br>
+
+runid                 	all	aaa1cfe0-4bd9-4fc2-abf6-98c35ab6854e <br>
+num_q                 	all	300 <br>
+num_ret               	all	28583 <br>
+num_rel               	all	339 <br>
+num_rel_ret           	all	235 <br>
+map                   	all	0.3520 <br>
+gm_map                	all	0.0121 <br>
+Rprec                 	all	0.2646 <br>
+bpref                 	all	0.6807 <br>
+recip_rank            	all	0.3680 <br>
+iprec_at_recall_0.00  	all	0.3683 <br>
+iprec_at_recall_0.10  	all	0.3683 <br>
+iprec_at_recall_0.20  	all	0.3683 <br>
+iprec_at_recall_0.30  	all	0.3680 <br>
+iprec_at_recall_0.40  	all	0.3628 <br>
+iprec_at_recall_0.50  	all	0.3558 <br>
+iprec_at_recall_0.60  	all	0.3558 <br>
+iprec_at_recall_0.70  	all	0.3551 <br>
+iprec_at_recall_0.80  	all	0.3413 <br>
+iprec_at_recall_0.90  	all	0.3406 <br>
+iprec_at_recall_1.00  	all	0.3406 <br>
+P_5                   	all	0.0973 <br>
+P_10                  	all	0.0547 <br>
+P_15                  	all	0.0396 <br>
+P_20                  	all	0.0307 <br>
+P_30                  	all	0.0218 <br>
+P_100                 	all	0.0078 <br>
+P_200                 	all	0.0039 <br>
+P_500                 	all	0.0016 <br>
+P_1000                	all	0.0008 <br>
+
+The Mean Average Precision (MAP) score for our retrieval system with corpus title, using trec_eval, is 0.3520.
+
+Below are the key results for corpus title and text: <br>
+
+runid                 	all	a06e8ec5-c2ec-443b-8cc5-142febf16054 <br>
+num_q                 	all	300 <br>
+num_ret               	all	29933 <br>
+num_rel               	all	339 <br>
+num_rel_ret           	all	304 <br>
+map                   	all	0.4842 <br>
+gm_map                	all	0.1139 <br>
+Rprec                 	all	0.3679 <br>
+bpref                 	all	0.8949 <br>
+recip_rank            	all	0.4957 <br>
+iprec_at_recall_0.00  	all	0.4959 <br>
+iprec_at_recall_0.10  	all	0.4959 <br>
+iprec_at_recall_0.20  	all	0.4959 <br>
+iprec_at_recall_0.30  	all	0.4958 <br>
+iprec_at_recall_0.40  	all	0.4936 <br>
+iprec_at_recall_0.50  	all	0.4915 <br>
+iprec_at_recall_0.60  	all	0.4915 <br>
+iprec_at_recall_0.70  	all	0.4894 <br>
+iprec_at_recall_0.80  	all	0.4771 <br>
+iprec_at_recall_0.90  	all	0.4733 <br>
+iprec_at_recall_1.00  	all	0.4733 <br>
+P_5                   	all	0.1347 <br>
+P_10                  	all	0.0773 <br>
+P_15                  	all	0.0556 <br>
+P_20                  	all	0.0430 <br>
+P_30                  	all	0.0306 <br>
+P_100                 	all	0.0101 <br>
+P_200                 	all	0.0051 <br>
+P_500                 	all	0.0020 <br>
+P_1000                	all	0.0010 <br>
+
+The Mean Average Precision (MAP) score for our retrieval system with corpus title and text, using trec_eval, is 0.4842.
+
+The MAP score for text and title is higher than only text or only title. The MAP score is better as combining both title and text increases cosine similarity score as the query terms have higher chances to be matched with vocabulary terms.
+
+
+
 
 ## Contributions & Tasks Divided
 
-Shabrina Sharmin: retr_rank.py (Retrieval and Ranking).
+Shabrina Sharmin (300230297): retr_rank.py (Retrieval and Ranking), report.
 
 Shannon Noah (300163898): Preprocessing.py (Preprocessing), and computing evaluation measures using trec_eval script, report.
 
