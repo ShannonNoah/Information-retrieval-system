@@ -44,7 +44,7 @@ def load_bm25_results(filepath):
     return bm25_results
 
 
-# 🔥 Modified rerank with top_k parameter
+# Modified rerank with top_k parameter
 def rerank(queries, corpus, initial_results, top_k=20):
     all_results = []
 
