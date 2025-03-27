@@ -10,8 +10,7 @@ def load_queries(filepath):
     queries = {}
     with jsonlines.open(filepath) as reader:
         for obj in reader:
-            if int(obj["_id"]) % 2 == 1:
-                queries[str(obj["_id"])] = obj["text"]
+            queries[str(obj["_id"])] = obj["text"]
     return queries
 
 
@@ -34,17 +33,23 @@ def load_bm25_results(filepath):
             qid = parts[1]
             doc_id = parts[3]
 
-            try:
-                if int(qid) % 2 == 1:
-                    bm25_results.setdefault(qid, []).append(doc_id)
-            except ValueError:
-                continue
+            bm25_results.setdefault(qid, []).append(doc_id)
 
-    print(f"Loaded BM25 results for {len(bm25_results)} odd-numbered queries.")
+    print(f"Loaded BM25 results for {len(bm25_results)} queries.")
     return bm25_results
 
 
-# Modified rerank with top_k parameter
+def get_test_qids(qrel_path):
+    qids = set()
+    with open(qrel_path, "r") as f:
+        for line in f:
+            parts = line.strip().split()
+            if parts:
+                qids.add(parts[0])
+    print(f"Found {len(qids)} query IDs in test.qrel.")
+    return qids
+
+
 def rerank(queries, corpus, initial_results, top_k=20):
     all_results = []
 
@@ -95,11 +100,14 @@ if __name__ == "__main__":
     queries = load_queries("dataset/queries.jsonl")
     corpus = load_corpus("dataset/corpus.jsonl")
     bm25 = load_bm25_results("bm25_results.txt")
+    test_qids = get_test_qids("dataset/test.qrel")
 
-    # Optional: subset for testing
-    subset_bm25 = dict(list(bm25.items())[:10])  # only 10 queries
 
-    results = rerank(queries, corpus, subset_bm25, top_k=50)
+    # Filter BM25 results to test.qrel queries only
+    filtered_bm25 = {qid: docs for qid, docs in bm25.items() if qid in test_qids}
+    print(f"Filtered to {len(filtered_bm25)} BM25 queries matching test.qrel.")
+
+    results = rerank(queries, corpus, filtered_bm25, top_k=50)
     save_results(results)
 
-    print("Sample saved to Results_miniLM.txt")
+    print("Results saved to Results_miniLM.txt")
