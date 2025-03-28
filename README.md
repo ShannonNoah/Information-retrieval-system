@@ -118,7 +118,7 @@ Steps to run:
 
 - **MiniLM** was the most effective reranker overall. It achieved the highest MAP and P@10 scores, indicating that it consistently returned more relevant documents at the top of the list. This model benefits from being trained on a wide variety of question-answer pairs, making it well-suited for tasks like this where queries vary widely.
 
-- **Doc2Vec** performed reasonably well and outperformed the baseline in some areas. However, it struggled to understand deeper semantic relationships in text, which is where transformer-based models like MiniLM have an advantage.
+- **Doc2Vec** performed reasonably well but struggled to understand deeper semantic relationships in text, which is where transformer-based models like MiniLM have an advantage.
 
 - **Universal Sentence Encoder (USE)** had the lowest performance. This is likely because USE is trained to provide general-purpose sentence embeddings rather than task-specific ones. As a result, it wasn’t as effective at ranking documents for complex scientific queries.
 
