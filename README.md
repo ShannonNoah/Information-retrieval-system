@@ -1,6 +1,8 @@
 # CSI4107 - Assignment 2: Neural Information Retrieval System (GROUP 45)
 
-This repository contains our group’s implementation of an enhanced Information Retrieval (IR) system for the Scifact dataset, incorporating multiple neural language models for improved retrieval accuracy.
+This assignment builds on our classical IR system from Assignment 1 by incorporating neural re-ranking techniques using recent transformer-based and vector-based models. We applied the BM25 ranking system from our inverted index as a base retriever, then re-ranked the top results using advanced embedding-based similarity methods.
+
+Our goal was to investigate whether semantic similarity-based methods using sentence encoders could outperform lexical-based models like BM25 in retrieving the most relevant documents for scientific claims from the Scifact dataset.
 
 ---
 
@@ -71,6 +73,16 @@ Steps to run:
 1. Open the Evaluate_Assignment_2.ipynb file in your Jupyter Notebook environment.
 2. Upload the following files to the notebook: test.qrel, Results_title_text.txt, Results_miniLM.txt, Results_useLM.txt, Results_doc2vec.txt`
 3. Run the cells.
+
+## ✅ Summary of Enhancements ✅ 
+
+- Used top 50–100 BM25 results from Assignment 1 as the candidate set for re-ranking.
+- Applied three re-ranking techniques:
+    - MiniLM (SentenceTransformers)
+    - Universal Sentence Encoder (USE)
+    - Doc2Vec (Gensim)
+- Compared results against the original BM25 baseline using trec_eval.
+- Highlighted performance based on MAP and P@10.
 
 ## Algorithms, Data Structures, and Optimizations
 
@@ -158,7 +170,7 @@ Top 10 documents for Query ID 3:
 
 ## Contributions & Tasks Divided
 
-Shabrina Sharmin (300230297): Implemented Universal Sentence Encoder reranker and Doc2Vec model reranking, report.
+Shabrina Sharmin (300230297): Implemented Universal Sentence Encoder & Doc2Vec model reranker, report.
 
 Shannon Noah (300163898): Added query filtering logic to improve MAP scores, integrated trec_eval, found top 10 answers, report.
 
